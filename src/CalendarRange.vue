@@ -8,13 +8,13 @@
     <calendar-month
       slot="month"
       slot-scope="params"
-      :mods="monthMods"
       :date="params.date"
     >
       <month-date
         slot="date"
         slot-scope="dateParams"
         class="calendar-range__date"
+        :monday-first="true"
         :date="dateParams.date"
         :start="params.start"
         :end="params.end"
@@ -28,8 +28,6 @@
 import BaseCalendar from './components/BaseCalendarRange';
 import CalendarMonth from './components/BaseCalendarRangeMonth';
 import MonthDate from './components/BaseCalendarRangeMonthDate';
-
-const monthMods = ['title-align-right'];
 
 export default {
   name: 'CalendarRange',
@@ -55,12 +53,6 @@ export default {
         return {};
       },
     },
-  },
-
-  data() {
-    return {
-      monthMods,
-    };
   },
 
   computed: {

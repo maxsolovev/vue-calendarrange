@@ -2,7 +2,9 @@
   <section class="range-month">
     <!-- month title -->
     <h3 class="range-month__title">
-      {{ date | formatMonthName }}
+      <slot name="title">
+        {{ date | formatMonthName }}
+      </slot>
     </h3>
 
     <!-- days of month -->
@@ -15,12 +17,6 @@
 </template>
 
 <script>
-const availableMods = ['title-align-right'];
-
-function checkMod(mod) {
-  return availableMods.includes(mod);
-}
-
 export default {
   name: 'BaseCalendarRangeMonth',
 
@@ -40,15 +36,6 @@ export default {
         return new Date();
       },
     },
-    mods: {
-      type: Array,
-      defualt() {
-        return [];
-      },
-      validator(mods) {
-        return Array.isArray(mods) && mods.every(checkMod);
-      },
-    },
   },
 
   computed: {
@@ -58,7 +45,7 @@ export default {
       const currentMonthIndex = month.getMonth();
       month.setDate(1);
 
-      while(month.getMonth() === currentMonthIndex) {
+      while (month.getMonth() === currentMonthIndex) {
         dates.push(new Date(month));
         month.setDate(month.getDate() + 1);
       }

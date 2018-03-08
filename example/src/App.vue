@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import CalendarRange from '../../';
+import { CalendarRange } from '../..';
 
 export default {
   name: 'App',
@@ -21,12 +21,6 @@ export default {
     return {
       period: undefined,
     };
-  },
-
-  watch: {
-    period(value) {
-      console.log('period', value);
-    },
   },
 };
 </script>

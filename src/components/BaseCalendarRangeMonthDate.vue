@@ -43,6 +43,10 @@ export default {
       type: Date,
       default: undefined,
     },
+    mondayFirst: {
+      type: Boolean,
+      default: false,
+    },
   },
 
   inject: ['bus'],
@@ -54,6 +58,18 @@ export default {
   },
 
   computed: {
+    day() {
+      let day = this.date.getDay();
+
+      if (this.mondayFirst) {
+        day -= 1;
+      }
+
+      return day < 0
+        ? 6
+        : day;
+    },
+
     classes() {
       const day = this.date.getDay();
       const date = this.date.getDate();
@@ -133,21 +149,16 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$base-color: #eee;
-$selected-color: #c5cece;
-$between-color: #cdcdcd;
-$hover-color: #e7eced;
-
 .month-date {
   grid-column: var(--week-position);
-  border: 1px solid $base-color;
+  border: 1px solid var(--day-border-color, #eee);
   border-width: 1px 1px 0 0;
   cursor: pointer;
   user-select: none;
 
   &:hover:not(&--selected) {
-    background-color: $hover-color;
-    border-color: $hover-color;
+    background-color: var(--day-hover-color, #e7eced);
+    border-color: var(--day-hover-color, #e7eced);
   }
 
   &--first-day {
@@ -167,13 +178,13 @@ $hover-color: #e7eced;
   }
 
   &--selected {
-    background-color: $selected-color;
-    border-color: $selected-color;
+    background-color: var(--day-select-color, #c5cece);
+    border-color: var(--day-select-color, #c5cece);
   }
 
   &--between {
-    background-color: $between-color;
-    border-color: $between-color;
+    background-color: var(--day-between-color, #cdcdcd);
+    border-color: var(--day-between-color, #cdcdcd);
   }
 }
 </style>
