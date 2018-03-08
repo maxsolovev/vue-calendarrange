@@ -148,43 +148,44 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 .month-date {
   grid-column: var(--week-position);
-  border: 1px solid var(--day-border-color, #eee);
+  border: 1px solid var(--day-base-color, #eee);
   border-width: 1px 1px 0 0;
   cursor: pointer;
   user-select: none;
+}
 
-  &:hover:not(&--selected) {
-    background-color: var(--day-hover-color, #e7eced);
-    border-color: var(--day-hover-color, #e7eced);
-  }
+/* mods */
+.month-date:hover:not(.month-date--selected) {
+  background-color: var(--day-hover-color, #e7eced);
+  border-color: var(--day-hover-color, #e7eced);
+}
 
-  &--first-day {
-    border-left-width: 0;
-  }
+.month-date--first-day {
+  border-left-width: 0;
+}
 
-  &--last-day {
-    border-right-width: 0;
-  }
+.month-date--last-day {
+  border-right-width: 0;
+}
 
-  &--first-week {
-    border-top-width: 0;
-  }
+.month-date--first-week {
+  border-top-width: 0;
+}
 
-  &--last-week {
-    border-bottom-width: 0;
-  }
+.month-date--last-week {
+  border-bottom-width: 0;
+}
 
-  &--selected {
-    background-color: var(--day-select-color, #c5cece);
-    border-color: var(--day-select-color, #c5cece);
-  }
+.month-date--selected {
+  background-color: var(--day-select-color, #c5cece);
+  border-color: var(--day-select-color, #c5cece);
+}
 
-  &--between {
-    background-color: var(--day-between-color, #cdcdcd);
-    border-color: var(--day-between-color, #cdcdcd);
-  }
+.month-date--between {
+  background-color: var(--day-between-color, #cdcdcd);
+  border-color: var(--day-between-color, #cdcdcd);
 }
 </style>

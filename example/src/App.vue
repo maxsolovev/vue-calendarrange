@@ -1,8 +1,11 @@
 <template>
   <div id="app">
     <calendar-range
-      v-model="period"
-      class="app-calendar"
+      v-model="calendarValues"
+      class="calendar-range"
+      :range-start="from"
+      :range-end="to"
+      :monday-first="mondayFirst"
     ></calendar-range>
   </div>
 </template>
@@ -19,22 +22,37 @@ export default {
 
   data() {
     return {
-      period: undefined,
+      // calendarValues will consist of start and end dates
+      // @param {Date} start
+      // @param {Date} end
+      calendarValues: undefined,
+
+      // if value is undefined, calendar will use date 6 months before current
+      from: new Date(2018, 0, 1),
+
+      // if value is undefined, calendar will use date 6 months after current
+      to: new Date(2019, 0, 1),
+
+      // if value is undefined, calendar will use false
+      // if value equals true, calendar will place monday as a first week day
+      mondayFirst: true,
     };
   },
 };
 </script>
 
-<style lang="scss" scoped>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+<style scoped>
+.calendar-range {
+  /* override base border color */
+  --day-base-color: green;
 
-.app-calendar {
-  margin: 0 auto;
+  /* it will be override background and border colors if cursor hovers date */
+  --day-hover-color: green;
+
+  /* overide background and border colors of selected start and end dates */
+  --day-select-color: green;
+
+  /* override background and border colors of a range between start and end dates */
+  --day-between-color: green;
 }
 </style>

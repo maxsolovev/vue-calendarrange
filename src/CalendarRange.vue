@@ -14,7 +14,7 @@
         slot="date"
         slot-scope="dateParams"
         class="calendar-range__date"
-        :monday-first="true"
+        :monday-first="mondayFirst"
         :date="dateParams.date"
         :start="params.start"
         :end="params.end"
@@ -39,6 +39,12 @@ export default {
   },
 
   props: {
+    period: {
+      type: Object,
+      default() {
+        return {};
+      },
+    },
     rangeStart: {
       type: Date,
       default: undefined,
@@ -47,11 +53,9 @@ export default {
       type: Date,
       defualt: undefined,
     },
-    period: {
-      type: Object,
-      default() {
-        return {};
-      },
+    mondayFirst: {
+      type: Boolean,
+      default: false,
     },
   },
 
@@ -68,13 +72,13 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 .calendar-range {
   width: 14em;
+}
 
-  &__date {
-    text-align: right;
-    padding: .5em;
-  }
+.calendar-range__date {
+  text-align: right;
+  padding: .5em;
 }
 </style>

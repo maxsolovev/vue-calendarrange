@@ -56,24 +56,22 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 .range-month {
   display: grid;
   grid-template: auto / repeat(7, 1fr);
+}
 
-  &__title {
-    grid-row: 1 / 2;
-    grid-column: 1 / -1;
-    font-weight: normal;
-    margin: 0 0 .5em 0;
-  }
+/* elems */
+.range-month__title {
+  grid-row: 1 / 2;
+  grid-column: 1 / -1;
+  font-weight: normal;
+  margin: 0 0 .5em 0;
+}
 
-  &:not(:last-of-type) {
-    margin: 0 0 1em 0;
-  }
-
-  &--title-align-right {
-    text-align: right;
-  }
+/* mods */
+.range-month:not(:last-of-type) {
+  margin: 0 0 1em 0;
 }
 </style>

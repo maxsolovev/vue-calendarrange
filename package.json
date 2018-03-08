@@ -21,7 +21,6 @@
     "test": "npm run unit",
     "lint": "eslint --ext .js,.vue src test/unit"
   },
-  "dependencies": {},
   "devDependencies": {
     "autoprefixer": "^7.1.2",
     "babel-core": "^6.22.1",

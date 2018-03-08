@@ -1,17 +1,4 @@
 /**
- * makeMods
- * create css classes
- *
- * @param  {String} baseClass
- * @param  {Array}  mods
- * @return {Array}
- */
-export function makeMods(baseClass = '', mods = []) {
-  return mods.map(mod => `${baseClass}--${mod}`)
-    .concat(baseClass);
-}
-
-/**
  * areDatesEqual
  * compare two dates
  *
