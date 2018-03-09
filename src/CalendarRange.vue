@@ -38,6 +38,11 @@ export default {
     MonthDate,
   },
 
+  model: {
+    prop: 'period',
+    event: 'input',
+  },
+
   props: {
     period: {
       type: Object,
