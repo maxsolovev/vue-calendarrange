@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="calendar-range">
     <!-- month slot -->
     <slot
       v-for="date of months"
@@ -191,3 +191,9 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.calendar-range {
+  display: inline-block;
+}
+</style>

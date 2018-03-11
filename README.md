@@ -1,6 +1,7 @@
 # vue-calendar-range
 
 > This is a calendar range which is based on VueJs 2.5+ and requires modern browsers.
+> [Live Demo](http://sanchezz.me/calendar/).
 
 ## Installation
 
@@ -70,3 +71,5 @@ export default {
 }
 </style>
 ```
+
+If you need to search a specified date in DOM tree, you can use ```data-time``` attribute, which represents ```date.getTime()``` call.

@@ -1,7 +1,6 @@
 <template>
   <base-calendar
     v-model="inputPeriod"
-    class="calendar-range"
     :range-start="rangeStart"
     :range-end="rangeEnd"
   >
@@ -13,7 +12,7 @@
       <month-date
         slot="date"
         slot-scope="dateParams"
-        class="calendar-range__date"
+        class="range-date"
         :monday-first="mondayFirst"
         :date="dateParams.date"
         :start="params.start"
@@ -78,11 +77,7 @@ export default {
 </script>
 
 <style scoped>
-.calendar-range {
-  width: 14em;
-}
-
-.calendar-range__date {
+.range-date {
   text-align: right;
   padding: .5em;
 }

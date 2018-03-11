@@ -2,6 +2,7 @@
   <div
     :class="classes"
     :style="styleObj"
+    :data-time="time"
     @click="handleClick"
     @mouseenter="handleMouseEnter"
     @mouseleave="handleMouseLeave"
@@ -103,6 +104,10 @@ export default {
     isSelected() {
       return areDatesEqual(this.date, this.start)
         || areDatesEqual(this.date, this.end);
+    },
+
+    time() {
+      return this.date.getTime();
     },
   },
 
