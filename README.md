@@ -68,6 +68,9 @@ export default {
 
   /* override background and border colors of a range between start and end dates */
   --day-between-color: green;
+
+  /* override background and border colors of current date */
+  --day-current-color: green;
 }
 </style>
 ```

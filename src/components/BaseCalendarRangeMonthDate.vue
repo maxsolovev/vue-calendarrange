@@ -12,7 +12,9 @@
 </template>
 
 <script>
-import { areDatesEqual, debounce } from './utils';
+import { areDatesEqual, debounce, createDate } from './utils';
+
+const currentDateTime = createDate().getTime();
 
 export default {
   name: 'BaseCalendarRangeMonthDate',
@@ -29,7 +31,7 @@ export default {
     date: {
       type: Date,
       default() {
-        return new Date();
+        return createDate();
       },
     },
     start: {
@@ -55,6 +57,7 @@ export default {
   data() {
     return {
       isBetween: false,
+      isCurrent: this.date.getTime() === currentDateTime,
     };
   },
 
@@ -92,6 +95,7 @@ export default {
         'month-date--last-day': isLastDay,
         'month-date--selected': this.isSelected,
         'month-date--between': this.isBetween,
+        'month-date--current': this.isCurrent,
       };
     },
 
@@ -143,11 +147,20 @@ export default {
     },
 
     calculateBetweenCondition() {
-      const endDate = this.end || this.enter;
+      let { start, end, enter, date, isSelected } = this;
 
-      this.isBetween = !this.isSelected
-        && this.date > this.start
-        && this.date < endDate;
+      if (!end && enter < start) {
+        end = start;
+        start = enter;
+      }
+
+      if (!end && enter >= start) {
+        end = enter;
+      }
+
+      this.isBetween = !isSelected
+        && date > start
+        && date < end;
     },
   },
 };
@@ -192,5 +205,10 @@ export default {
 .month-date--between {
   background-color: var(--day-between-color, #cdcdcd);
   border-color: var(--day-between-color, #cdcdcd);
+}
+
+.month-date--current {
+  background-color: var(--day-current-color, #7E8F7C);
+  border-color: var(--day-current-color, #7E8F7C);
 }
 </style>
