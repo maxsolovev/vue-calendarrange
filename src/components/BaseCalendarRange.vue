@@ -8,6 +8,8 @@
       :start="start"
       :end="end"
       :enter="enter"
+      :range-start="computedRangeStart"
+      :range-end="computedRangeEnd"
     ></slot>
   </div>
 </template>
@@ -94,9 +96,27 @@ export default {
   },
 
   computed: {
+    computedRangeStart() {
+      const { start } = this.period;
+      const date = start instanceof Date && start < this.rangeStart
+        ? start
+        : this.rangeStart;
+
+      return makeDate(date);
+    },
+
+    computedRangeEnd() {
+      const { end } = this.period;
+      const date = end instanceof Date && end > this.rangeEnd
+        ? end
+        : this.rangeEnd;
+
+      return makeDate(date);
+    },
+
     from() {
       const { from } = this.period;
-      let fromDate = makeDate(this.rangeStart);
+      let fromDate = new Date(this.computedRangeStart);
 
       if (!fromDate || isNaN(fromDate.getTime())) {
         fromDate = createDate();
@@ -113,7 +133,7 @@ export default {
 
     to() {
       const { to } = this.period;
-      let toDate = makeDate(this.rangeEnd);
+      let toDate = new Date(this.computedRangeEnd);
 
       if (!toDate || isNaN(toDate.getTime())) {
         toDate = createDate();

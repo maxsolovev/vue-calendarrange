@@ -60,10 +60,10 @@ export default {
   /* override base border color */
   --day-base-color: green;
 
-  /* it will be override background and border colors if cursor hovers date */
+  /* it will override background and border colors if cursor hovers date */
   --day-hover-color: green;
 
-  /* overide background and border colors of selected start and end dates */
+  /* override background and border colors of selected start and end dates */
   --day-select-color: green;
 
   /* override background and border colors of a range between start and end dates */
@@ -71,6 +71,9 @@ export default {
 
   /* override background and border colors of current date */
   --day-current-color: green;
+
+  /* override text color and border colors of disabled date */
+  --day-disable-color: green;
 }
 </style>
 ```

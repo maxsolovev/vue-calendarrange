@@ -18,6 +18,8 @@
         :start="params.start"
         :end="params.end"
         :enter="params.enter"
+        :range-start="params.rangeStart"
+        :range-end="params.rangeEnd"
       ></month-date>
     </calendar-month>
   </base-calendar>

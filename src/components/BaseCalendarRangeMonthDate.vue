@@ -50,6 +50,14 @@ export default {
       type: Boolean,
       default: false,
     },
+    rangeStart: {
+      type: Date,
+      default: undefined,
+    },
+    rangeEnd: {
+      type: Date,
+      default: undefined,
+    },
   },
 
   inject: ['bus'],
@@ -74,6 +82,22 @@ export default {
         : day;
     },
 
+    styleObj() {
+      return {
+        '--week-position': this.date.getDay() + 1,
+      };
+    },
+
+    isSelected() {
+      return areDatesEqual(this.date, this.start)
+        || areDatesEqual(this.date, this.end);
+    },
+
+    isDisabled() {
+      return this.rangeStart && this.date < this.rangeStart
+        || this.rangeEnd && this.date > this.rangeEnd;
+    },
+
     classes() {
       const day = this.date.getDay();
       const date = this.date.getDate();
@@ -96,18 +120,8 @@ export default {
         'month-date--selected': this.isSelected,
         'month-date--between': this.isBetween,
         'month-date--current': this.isCurrent,
+        'month-date--disabled': this.isDisabled,
       };
-    },
-
-    styleObj() {
-      return {
-        '--week-position': this.date.getDay() + 1,
-      };
-    },
-
-    isSelected() {
-      return areDatesEqual(this.date, this.start)
-        || areDatesEqual(this.date, this.end);
     },
 
     time() {
@@ -135,7 +149,9 @@ export default {
 
   methods: {
     handleClick() {
-      this.bus.$emit('pick', this.date);
+      if (!this.isDisabled) {
+        this.bus.$emit('pick', this.date);
+      }
     },
 
     handleMouseEnter() {
@@ -175,8 +191,14 @@ export default {
   user-select: none;
 }
 
+.month-date--disabled {
+  border-color: var(--day-disabled-color, #F6F6F6);
+  color: var(--day-disabled-color, #F6F6F6);
+  cursor: not-allowed;
+}
+
 /* mods */
-.month-date:hover:not(.month-date--selected) {
+.month-date:hover:not(.month-date--selected):not(.month-date--disabled) {
   background-color: var(--day-hover-color, #e7eced);
   border-color: var(--day-hover-color, #e7eced);
 }
@@ -200,15 +222,23 @@ export default {
 .month-date--selected {
   background-color: var(--day-select-color, #c5cece);
   border-color: var(--day-select-color, #c5cece);
+  color: black;
 }
 
 .month-date--between {
   background-color: var(--day-between-color, #cdcdcd);
   border-color: var(--day-between-color, #cdcdcd);
+  color: black;
 }
 
 .month-date--current {
   background-color: var(--day-current-color, #7E8F7C);
   border-color: var(--day-current-color, #7E8F7C);
+  color: black;
 }
+
+.month-date--disabled + .month-date + .month-date + .month-date + .month-date
+  + .month-date + .month-date + .month-date {
+    border-top-color: var(--day-disable-color, #F6F6F6);
+  }
 </style>

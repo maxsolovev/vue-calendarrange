@@ -16,8 +16,8 @@
 <script>
 import { CalendarRange } from '../..';
 
-const start = new Date(2018, 5, 1);
-const end = new Date(2018, 5, 14);
+const start = new Date(2018, 0, 1);
+const end = new Date(2018, 3, 14);
 
 let positionY;
 
@@ -48,10 +48,10 @@ export default {
       },
 
       // if value is undefined, calendar will use date 6 months before current
-      from: new Date(2018, 0, 1),
+      from: new Date(2018, 1, 14),
 
       // if value is undefined, calendar will use date 6 months after current
-      to: new Date(2019, 0, 1),
+      to: new Date(2018, 2, 14),
 
       // if value is undefined, calendar will use false
       // if value equals true, calendar will place monday as a first week day

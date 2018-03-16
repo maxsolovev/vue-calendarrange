@@ -16,7 +16,7 @@ export function areDatesEqual(firstDate, secondDate) {
 
 /**
  * createDate
- * create date at begining day
+ * create a date in the beginning of the day
  *
  * @param  {Date} date
  * @return {Date}
