@@ -72,7 +72,7 @@ export default {
   /* override background and border colors of current date */
   --day-current-color: green;
 
-  /* override text color and border colors of disabled date */
+  /* override text and border colors of disabled date */
   --day-disable-color: green;
 }
 </style>

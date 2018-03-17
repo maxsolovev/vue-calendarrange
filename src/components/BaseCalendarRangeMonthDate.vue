@@ -99,6 +99,12 @@ export default {
     },
 
     classes() {
+      if (this.isDisabled) {
+        return {
+          'month-date': true,
+          'month-date--disabled': this.isDisabled,
+        };
+      }
       const day = this.date.getDay();
       const date = this.date.getDate();
       const isFirstWeek = date <= day + 1;
@@ -120,7 +126,6 @@ export default {
         'month-date--selected': this.isSelected,
         'month-date--between': this.isBetween,
         'month-date--current': this.isCurrent,
-        'month-date--disabled': this.isDisabled,
       };
     },
 
